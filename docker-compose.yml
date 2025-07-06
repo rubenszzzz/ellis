@@ -1,0 +1,18 @@
+services:
+  # Define o serviço da sua aplicação FastAPI.
+  api:
+    # Constrói a imagem Docker a partir do Dockerfile no diretório atual.
+    # O comando para iniciar a aplicação (CMD) já está definido dentro do seu Dockerfile,
+    # então não precisamos repeti-lo aqui.
+    build: .
+    container_name: api
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner.
+    ports:
+      - "8000:8000"
+
+    # Monta o diretório atual ('.') dentro do diretório /app do contêiner.
+    # Isso é essencial para o desenvolvimento, pois sincroniza seus arquivos.
+    # Qualquer alteração no código é refletida imediatamente, e o arquivo do banco
+    # de dados SQLite (escola.db) é criado e salvo no seu computador, não sendo perdido.
+    volumes:
+      - .:/app
